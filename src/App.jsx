@@ -9,7 +9,9 @@ function App() {
   return (
     <div className='grid-container'>
       <Nav className='nav' style={{ gridArea: 'nav' }}/>
-      <Outlet className='outlet' style={{ gridArea: 'outlet' }}/>
+      <div className='outlet' style={{ gridArea: 'outlet' }}>
+        <Outlet />
+      </div>
       <Aside className='aside' style={{ gridArea: 'aside' }}/>
   </div>
   )
