@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --preto: #0E0C0F;
+}
+
 *{
     margin: 0;
     padding: 0;

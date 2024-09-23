@@ -1,24 +1,26 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/Logo_F-E.svg";
 import "../index.css";
+import "../App.css"
 import { MdOutlineHome } from "react-icons/md";
 import { IoTrophyOutline } from "react-icons/io5";
 import { MdOutlineGroups3 } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 export default function Nav() {
 return (
     <>
-        <div className="flex flex-col g-2 w-[30%] h-full">
-            <div className="bg-black rounded-md pr-5 flex gap-1">
+        <div className="nav flex flex-col gap-">
+            <div className="flex items-center gap-1">
                 <img src={Logo} alt="Logo formula E" className="w-3/4" />
-                <button className="text-white">Icon menu</button>
+                <button className="text-white text-3xl"><AiOutlineMenu/></button>
             </div>
 
-            <nav className="text-azul-claro text-2xl bg-black rounded-md pl-[35%]">
-                <ul className="flex flex-col gap-2 ">
+            <nav className="text-azul-claro py-8 text-3xl pl-[30%]">
+                <ul className="flex flex-col gap-3 ">
                     <li>
-                        <NavLink className={'flex items-center'} to="/">
+                        <NavLink className={'flex items-center gap-3'} to="/">
                             <div>
                                 <MdOutlineHome />
                             </div>
@@ -28,7 +30,7 @@ return (
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={'flex items-center'} to="/Ranking">
+                        <NavLink className={'flex items-center gap-3'} to="/ranking">
                             <div>
                                 <IoTrophyOutline />
                             </div>
@@ -38,7 +40,7 @@ return (
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={'flex items-center'} to="/Teams">
+                        <NavLink className={'flex items-center gap-3'} to="/teams">
                             <div>
                                 <MdOutlineGroups3 />
                             </div>
@@ -48,7 +50,7 @@ return (
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={'flex items-center'} to="/About">
+                        <NavLink className={'flex items-center gap-3'} to="/about">
                             <div>
                                 <BsPerson />
                             </div>
@@ -60,7 +62,7 @@ return (
                 </ul>
             </nav>
 
-            <div>
+            <div className="flex-grow overflow-auto">
                 <h1 className="text-azul-claro">Meu perfil</h1>
                 <p>Informações do Perfil vão aparecer aqui após criar conta</p>
             </div>
