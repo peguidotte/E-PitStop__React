@@ -1,9 +1,9 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: auto;
   grid-template-areas: 
-    "nav outlet aside";
+    "nav outlet";
   height: 99vh;
   margin: 5px;
   gap: 5px;
@@ -14,8 +14,21 @@
   padding: 10px;
 }
 
-.outlet, .aside, .nav>div, .nav>nav{
+.outlet, .aside, .nav>div, .nav>header, .nav>nav{
   background-color: #0E0C0F;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "nav outlet";
+  }
+
+  .aside {
+    display: none;
+  }
 }
 
