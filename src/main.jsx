@@ -8,11 +8,11 @@ import HomeFollowing from './pages/Home/HomeFollowing.jsx';
 import HomeForYou from './pages/Home/HomeForyou.jsx';
 import HomeTeams from './pages/Home/HomeTeams.jsx';
 
-import About from './pages/About.jsx';
 import Ranking from './pages/Ranking.jsx';
 import Teams from './pages/Teams.jsx';
 import Chat from './pages/Chat.jsx';
 import Stream from './pages/Stream.jsx';
+import Profile from './pages/Profile.jsx';
 
 import ReactDOM from 'react-dom/client';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -36,7 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="chat" element={<Chat />} />
           <Route path="ranking" element={<Ranking />} />
           <Route path="teams" element={<Teams />} />
-          <Route path="about" element={<About />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>
