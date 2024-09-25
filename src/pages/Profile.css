@@ -1,0 +1,43 @@
+form>input, form>select {
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid var(--azul-marinho);
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: var(--cinza);
+}
+
+.swalform{
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid var(--azul-claro);
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: var(--cinza);
+}
+
+.swalcontainer{
+    background-color: var(--preto);
+    color: var(--branco);
+}
+
+.swalcontent{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swalbutton {
+    background-color: var(--azul-marinho);
+    color: var(--branco);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.swalbutton:hover {
+    background-color: var(--azul-claro);
+}

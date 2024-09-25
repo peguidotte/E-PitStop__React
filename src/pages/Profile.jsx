@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import '../pages/Profile.css';
+import { useState, useEffect } from 'react';
+import AuthForm from '../components/AuthForm';
+import Swal from 'sweetalert2'
 
 const Profile = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,10 +14,6 @@ const Profile = () => {
         team: '',
         athlete: ''
     });
-    const [loginData, setLoginData] = useState({
-        email: '',
-        password: ''
-    });
 
     const teams = [
         { name: "Team A", image: "url_to_team_a_image" },
@@ -22,46 +21,54 @@ const Profile = () => {
         { name: "Team C", image: "url_to_team_c_image" }
     ];
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleLoginInputChange = (e) => {
-        const { name, value } = e.target;
-        setLoginData({ ...loginData, [name]: value });
-    };
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-        localStorage.setItem('user', JSON.stringify(formData));
-        setIsLoggedIn(true);
-    };
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        if (storedUser && storedUser.email === loginData.email && storedUser.password === loginData.password) {
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (storedUser) {
             setIsLoggedIn(true);
-        } else {
-            alert('Email ou senha incorretos');
+            setFormData(storedUser);
+            console.log('Current User:', storedUser);
         }
+    }, []);
+
+    const handleRegister = (formData) => {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push(formData);
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('currentUser', JSON.stringify(formData));
+        setIsLoggedIn(true);
+        setFormData(formData);
+        Swal.close();
+        console.log('Current User:', formData);
+    };
+
+    const handleLogin = (storedUser) => {
+        localStorage.setItem('currentUser', JSON.stringify(storedUser));
+        setIsLoggedIn(true);
+        setFormData(storedUser);
+        console.log('Current User:', storedUser);
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('user'); // Remove the user data from localStorage
         setIsLoggedIn(false);
+        setFormData({
+            firstName: '',
+            lastName: '',
+            phone: '',
+            email: '',
+            password: '',
+            team: '',
+            athlete: ''
+        });
     };
 
     if (isLoggedIn) {
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        const selectedTeam = teams.find(team => team.name === storedUser.team);
+        const selectedTeam = teams.find(team => team.name === formData.team);
         return (
             <div>
-                <h1>{storedUser.firstName} {storedUser.lastName}</h1>
-                <p>Email: {storedUser.email}</p>
-                <p>Telefone: {storedUser.phone}</p>
-                <p>Time Preferido: {storedUser.team}</p>
+                <h1>{formData.firstName} {formData.lastName}</h1>
+                <p>Email: {formData.email}</p>
+                <p>Telefone: {formData.phone}</p>
+                <p>Time Preferido: {formData.team}</p>
                 {selectedTeam && (
                     <div>
                         <h2>Imagem do Time</h2>
@@ -74,33 +81,9 @@ const Profile = () => {
     }
 
     return (
-        <div>
-            <div>
-                <h1>Cadastro</h1>
-                <form onSubmit={handleRegister}>
-                    <input type="text" name="firstName" placeholder="Name" value={formData.firstName} onChange={handleInputChange} required />
-                    <input type="text" name="lastName" placeholder="Last name" value={formData.lastName} onChange={handleInputChange} required />
-                    <input type="text" name="phone" placeholder="Phone number" value={formData.phone} onChange={handleInputChange} required />
-                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required />
-                    <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} required minLength="6" />
-                    <select name="team" value={formData.team} onChange={handleInputChange} required>
-                        <option value="">Select your favorite team</option>
-                        {teams.map((team, index) => (
-                            <option key={index} value={team.name}>{team.name}</option>
-                        ))}
-                    </select>
-                    <button type="submit">Cadastrar</button>
-                </form>
-            </div>
-            <div>
-                <h1>Login</h1>
-                <form onSubmit={handleLogin}>
-                    <input type="email" name="email" placeholder="Email" value={loginData.email} onChange={handleLoginInputChange} required />
-                    <input type="password" name="password" placeholder="Senha" value={loginData.password} onChange={handleLoginInputChange} required minLength="6" />
-                    <button type="submit">Entrar</button>
-                </form>
-            </div>
-        </div>
+
+        <AuthForm onLogin={handleLogin} onRegister={handleRegister} teams={teams} />
+
     );
 };
 

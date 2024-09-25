@@ -5,6 +5,11 @@
 
 :root{
     --preto: #0E0C0F;
+    --cinza: #181718;
+    --azul-marinho: #005E77;
+    --azul-claro: #6ED5F4;
+    --azul-escuro: #3BA4C4;
+    --branco: #D9D9D9;
 }
 
 *{
@@ -15,6 +20,6 @@ html, body, #root {
     height: 100%;
 }
 body {
-    background-color: #181718;
+    background-color: var(--cinza);
     font-family: 'Montserrat', sans-serif;
 };
