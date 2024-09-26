@@ -4,6 +4,7 @@ import AuthForm from '../components/AuthForm';
 import Swal from 'sweetalert2';
 import { MdOutlineEdit } from 'react-icons/md';
 import { CiLogout } from 'react-icons/ci';
+import User from '../assets/userprofile.png'
 
 const Profile = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,8 +16,9 @@ const Profile = () => {
         team: '',
         athlete: '',
         profilePicture: '',
-        bio: ''
+        bio: 'Sua bio vem aqui!'
     });
+
     const [activeTab, setActiveTab] = useState('posts');
 
     const teams = [
@@ -70,26 +72,10 @@ const Profile = () => {
             team: '',
             athlete: '',
             profilePicture: '',
-            bio: ''
+            bio: 'Sua bio vem aqui!'
         });
         localStorage.removeItem('currentUser');
         console.log('User logged out');
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setFormData({ ...formData, profilePicture: reader.result });
-        };
-        if (file) {
-            reader.readAsDataURL(file);
-        }
     };
 
     const handleTabChange = (tab) => {
@@ -100,13 +86,28 @@ const Profile = () => {
         Swal.fire({
             title: 'Editar Perfil',
             html: `
-                <input type="file" id="profilePicture" class="swal2-input" />
-                <textarea id="bio" class="swal2-textarea" placeholder="Bio" maxlength="100">${formData.bio}</textarea>
-                <select id="team" class="swal2-select">
-                    ${teams.map(team => `<option value="${team.name}" ${team.name === formData.team ? 'selected' : ''}>${team.name}</option>`).join('')}
-                </select>
+                <div class= "flex flex-col">
+                    <label for="profilePicture">Foto</label>
+                    <input type="file" id="profilePicture" class="swal2-input swalform" style="width: 100%;" />
+
+                    <label for="bio" class=''>Bio</label>
+                    <textarea id="bio" class="swal2-textarea swalform" placeholder="Bio" maxlength="100">${formData.bio || ""}</textarea>
+                    
+                    <label for="team">Altere seu time</label>
+                    <select id="team" class="swal2-select swalform">
+                        ${teams.map(team => `<option class='swalform' value="${team.name}" ${team.name === formData.team ? 'selected' : ''}>${team.name}</option>`).join('')}
+                    </select>
+                </div>
             `,
             focusConfirm: false,
+            customClass: {
+                popup: 'swalcontainer',
+                confirmButton: 'swalbutton',
+                cancelButton: 'swalbutton'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Salvar',
+            cancelButtonText: 'Cancelar',
             preConfirm: () => {
                 const profilePictureInput = document.getElementById('profilePicture');
                 const bioInput = document.getElementById('bio').value;
@@ -146,8 +147,8 @@ const Profile = () => {
                 const users = JSON.parse(localStorage.getItem('users')) || [];
                 const updatedUsers = users.map(user => user.email === formData.email ? { ...formData, profilePicture, bio, team } : user);
                 localStorage.setItem('users', JSON.stringify(updatedUsers));
-                localStorage.setItem('currentUser', JSON.stringify({ ...formData, profilePicture, bio, team }));
-                console.log('Profile updated:', { ...formData, profilePicture, bio, team });
+                localStorage.setItem('Usuário Atual', JSON.stringify({ ...formData, profilePicture, bio, team }));
+                console.log('Perfil Atualizado:', { ...formData, profilePicture, bio, team });
             }
         });
     };
@@ -158,8 +159,8 @@ const Profile = () => {
             <div className='p-5 md:px-10'>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-5'>
-                        <img className='rounded-full w-14 md:w-28' src={formData.profilePicture} alt='profile photo'/>
-                        <h1 className='text-azul-claro text-2xl md:text-4xl'>{formData.username}</h1>
+                    <img className='rounded-full w-14 md:w-28' src={formData.profilePicture || User} alt='profile photo'/>
+                        <h1 className='text-azul-claro text-2xl md:text-4xl lg:text-5xl'>{formData.username}</h1>
                     </div>
                     <div className='flex items-center gap-6'>
                         <button className='text-azul-marinho text-2xl md:text-4xl hover:text-azul-claro' onClick={handleEditProfile}>
@@ -170,10 +171,10 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-                <p className='mt-3 text-gray-300 break-words break-all'>{formData.bio}</p>
-                <p style={{ color: selectedTeam?.color }}>{formData.team}</p>
+                <p className='mt-3 text-gray-300 break-words break-all'>{formData.bio || 'Sua bio vem aqui!'}</p>
+                <p className='mt-2 text-2xl md:text-4xl mb-4' style={{ color: selectedTeam?.color }}>{formData.team}</p>
 
-                <div className='flex justify-between'>
+                <div className='flex justify-between p-8'>
                     <button onClick={() => handleTabChange('posts')}>Posts</button>
                     <button onClick={() => handleTabChange('liked')}>Curtidos</button>
                     <button onClick={() => handleTabChange('saved')}>Salvos</button>

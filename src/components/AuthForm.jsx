@@ -43,7 +43,6 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
             focusConfirm: false,
             customClass: {
                 popup: 'swalcontainer',
-                title: 'swaltitle',
                 confirmButton: 'swalbutton',
                 cancelButton: 'swalbutton'
             },
@@ -56,6 +55,18 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
                 const email = Swal.getPopup().querySelector('#email').value;
                 const password = Swal.getPopup().querySelector('#password').value;
                 const team = Swal.getPopup().querySelector('#team').value;
+                
+
+                // Validação de email e username existentes
+                const existingUser = JSON.parse(localStorage.getItem('users')) || [];
+                if(existingUser.some(user => user.email === email)){
+                    Swal.showValidationMessage('Já existe uma conta com esse email')
+                    return false;
+                }
+                if(existingUser.some(user => user.username === username)){
+                    Swal.showValidationMessage('Usuário existente, tente outro nome')
+                    return false
+                }
 
                 // Validação do telefone (DDD + número)
                 const phoneRegex = /^\d{2}\d{8,9}$/;
