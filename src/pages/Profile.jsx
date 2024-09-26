@@ -40,7 +40,6 @@ const Profile = () => {
         if (storedUser) {
             setIsLoggedIn(true);
             setFormData(storedUser);
-            console.log('Current User:', storedUser);
         }
     }, []);
 
@@ -187,11 +186,10 @@ const Profile = () => {
                 </div>
             </div>
         );
-    }
-
-    return (
-        <AuthForm onLogin={handleLogin} onRegister={handleRegister} teams={teams} />
-    );
+    } 
+    
+    <AuthForm onLogin={handleLogin} onRegister={handleRegister} teams={teams} />
+        
 };
 
 export default Profile;

@@ -3,19 +3,16 @@ import { NavLink } from "react-router-dom";
 import Logo from "../assets/Logo_F-E.svg";
 import "../index.css";
 import "../App.css";
-import '../components/Menu.css';
 
-import { MdOutlineHome, MdOutlineGroups3 } from "react-icons/md";
-import { IoTrophyOutline } from "react-icons/io5";
+import { MdOutlineHome,  MdOutlineSearch } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
 import { RxVideo } from "react-icons/rx";
 import { CiChat1 } from "react-icons/ci";
 
 const menuItems = [
     { to: "/", icon: <MdOutlineHome />, label: "Home" },
-    { to: "ranking", icon: <IoTrophyOutline />, label: "Ranking" },
-    { to: "teams", icon: <MdOutlineGroups3 />, label: "Teams" },
     { to: "stream", icon: <RxVideo />, label: "Stream" },
+    { to: "search", icon: <MdOutlineSearch/>, label:"Search"},
     { to: "chat", icon: <CiChat1 />, label: "Chat" },
     { to: "profile", icon: <BsPerson />, label: "Profile" }
 ];
