@@ -30,8 +30,7 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
             title: 'Cadastro',
             html: `
                 <div class="flex flex-col">
-                    <input type="text" id="firstName" class="swal2-input swalform" placeholder="Nome" required />
-                    <input type="text" id="lastName" class="swal2-input swalform" placeholder="Sobrenome" required />
+                    <input type="text" id="username" class="swal2-input swalform" placeholder="Username" required />
                     <input type="text" id="phone" class="swal2-input swalform" placeholder="Cel (DDD+número)" required />
                     <input type="email" id="email" class="swal2-input swalform" placeholder="Email" required />
                     <input type="password" id="password" class="swal2-input swalform" placeholder="Senha" required />
@@ -52,8 +51,7 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
             confirmButtonText: 'Cadastrar',
             cancelButtonText: 'Cancelar',
             preConfirm: () => {
-                const firstName = Swal.getPopup().querySelector('#firstName').value;
-                const lastName = Swal.getPopup().querySelector('#lastName').value;
+                const username = Swal.getPopup().querySelector('#username').value;
                 const phone = Swal.getPopup().querySelector('#phone').value;
                 const email = Swal.getPopup().querySelector('#email').value;
                 const password = Swal.getPopup().querySelector('#password').value;
@@ -72,7 +70,7 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
                     return false;
                 }
 
-                return { firstName, lastName, phone, email, password, team };
+                return { username, phone, email, password, team };
             }
         }).then((result) => {
             if (result.isConfirmed) {
@@ -87,13 +85,20 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
             <form onSubmit={handleLogin} className='flex flex-col items-center'>
                 <input type="email" name="email" placeholder="Email" value={loginData.email} onChange={handleLoginInputChange} required />
                 <input type="password" name="password" placeholder="Senha" value={loginData.password} onChange={handleLoginInputChange} required minLength="6" />
-                <button type="submit" className='bg-azul-escuro rounded-xl mt-3 text-2xl py-2 px-6'>Entrar</button>
+                <button type="submit" 
+                className='bg-azul-escuro rounded-xl mt-3 text-2xl py-2 px-6 hover:px-7 hover:py-3 duration-500'>
+                    Entrar
+                </button>
             </form>
             <h2 className='mt-5'>Ainda não tem uma conta?</h2>
-            <button onClick={openRegister} className='bg-azul-escuro rounded-xl mt-3 text-2xl p-2 px-6'>Cadastre-se</button>
+            <button onClick={openRegister} 
+            className='bg-azul-escuro rounded-xl mt-3 text-2xl p-2 px-6 hover:px-7 hover:py-3 duration-500'>
+                Cadastre-se
+            </button>
         </div>
     );
 };
+
 AuthForm.propTypes = {
     onLogin: PropTypes.func.isRequired,
     onRegister: PropTypes.func.isRequired,
