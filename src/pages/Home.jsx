@@ -3,6 +3,12 @@ import '../App.css';
 import '../index.css';
 
 export default function Home() {
+
+    
+    const createPost = () => {
+
+    };
+
     return (
         <main className='outlet flex flex-col h-full'>
             <nav className='mb-5 md:p-5 lg:py-8 lg:px-12'>
@@ -17,6 +23,7 @@ export default function Home() {
             <div className='flex-grow overflow-auto'>
                 <Outlet />
             </div>
+            <button onClick={createPost} className='self-end m-10 p-4 w-auto bg-azul-marinho rounded-full'>Novo Post</button>
         </main>
     );
 }

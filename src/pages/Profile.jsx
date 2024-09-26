@@ -53,14 +53,14 @@ const Profile = () => {
         Swal.close();
         console.log('Current User:', formData);
     };
-
+    
     const handleLogin = (storedUser) => {
         localStorage.setItem('currentUser', JSON.stringify(storedUser));
         setIsLoggedIn(true);
         setFormData(storedUser);
         console.log('Current User:', storedUser);
     };
-
+    
     const handleLogout = () => {
         setIsLoggedIn(false);
         setFormData({
@@ -76,7 +76,7 @@ const Profile = () => {
         localStorage.removeItem('currentUser');
         console.log('User logged out');
     };
-
+    
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
@@ -188,7 +188,7 @@ const Profile = () => {
         );
     } 
     
-    <AuthForm onLogin={handleLogin} onRegister={handleRegister} teams={teams} />
+    return <AuthForm onLogin={handleLogin} onRegister={handleRegister} teams={teams} />
         
 };
 

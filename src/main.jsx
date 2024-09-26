@@ -31,6 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="home-communities" element={<HomeCommunities />} />
             <Route index path="/" element={<HomeForYou />} />
           </Route>
+          
           <Route path='search' element={<Search/>}/>
           <Route path="stream" element={<Stream />} />
           <Route path="chat" element={<Chat />} />
