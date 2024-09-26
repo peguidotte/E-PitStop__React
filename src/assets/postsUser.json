@@ -1,0 +1,59 @@
+{
+    "grupos": [
+      {
+        "id": 1,
+        "nome": "Tecnologia"
+      },
+      {
+        "id": 2,
+        "nome": "Sustentabilidade"
+      }
+    ],
+    "usuarios": [
+      {
+        "id": 1,
+        "nome": "Carlos Silva",
+        "email": "carlos.silva@email.com"
+      },
+      {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria.oliveira@email.com"
+      }
+    ],
+    "posts": [
+      {
+        "id": 101,
+        "titulo": "A evolução da Fórmula E",
+        "conteudo": "A Fórmula E tem evoluído rapidamente desde sua criação. As novas tecnologias estão mudando o cenário das corridas elétricas.",
+        "data": "2024-09-01",
+        "usuario_id": 1,
+        "grupo_id": 1
+      },
+      {
+        "id": 102,
+        "titulo": "Desempenho das equipes na temporada 2024",
+        "conteudo": "Analisando o desempenho das principais equipes nesta temporada e as estratégias utilizadas.",
+        "data": "2024-09-10",
+        "usuario_id": 1,
+        "grupo_id": null
+      },
+      {
+        "id": 201,
+        "titulo": "Os desafios da Fórmula E",
+        "conteudo": "A Fórmula E enfrenta desafios únicos, desde a sustentabilidade até a aceitação do público.",
+        "data": "2024-09-05",
+        "usuario_id": 2,
+        "grupo_id": 2
+      },
+      {
+        "id": 202,
+        "titulo": "Os pilotos mais promissores da Fórmula E",
+        "conteudo": "Um olhar sobre os jovens talentos que estão se destacando na Fórmula E.",
+        "data": "2024-09-15",
+        "usuario_id": 2,
+        "grupo_id": null
+      }
+    ]
+  }
+  
