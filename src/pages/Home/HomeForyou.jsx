@@ -7,14 +7,22 @@ function Foryou() {
     const [usuarios, setUsuarios] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
     const [posts, setPosts] = useState([]);
-    const [grupos, setGrupos] = useState([]);    
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const [textPost, setTextPost] = useState('');
 
     useEffect(() => {
         setUsuarios(data.usuarios);
-        setPosts(data.posts.sort((a, b) => new Date(b.data) - new Date(a.data)));
-        setGrupos(data.grupos);
+        const initialPosts = [...data.posts];
 
-        // Carregar likes do localStorage
+        const savedPosts = localStorage.getItem('posts');
+        if (savedPosts) {
+            const postsArray = JSON.parse(savedPosts);
+            // Juntando os posts do Local Storage com os posts do JSON
+            initialPosts.push(...postsArray);
+        }
+        
+        setPosts(initialPosts); // Define os posts combinados
+
         const savedLikes = localStorage.getItem("likes");
         if (savedLikes) {
             setLikedPosts(savedLikes.split(';'));
@@ -26,7 +34,6 @@ function Foryou() {
             ? likedPosts.filter(id => id !== postId.toString())
             : [...likedPosts, postId.toString()];
 
-        // Atualiza o localStorage
         localStorage.setItem("likes", newLikedPosts.join(';'));
         setLikedPosts(newLikedPosts);
     }
@@ -35,7 +42,7 @@ function Foryou() {
         <div className="max-w-3xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Posts for you</h1>
             <ul>
-                {posts.map(post => {
+                {posts.sort((a, b) => new Date(b.data) - new Date(a.data)).map(post => {
                     const user = usuarios.find(x => x.id === post.usuario_id);
                     return (
                         <li key={post.id} className="mb-6 p-4 border rounded-lg shadow-md bg-white relative">
@@ -51,7 +58,7 @@ function Foryou() {
                                 )}
                             </button>
                             <div className='flex flex-row items-end justify-start'>
-                                <h2 className="text-xl text-gray-800 font-semibold">{user.nome}</h2>
+                                <h2 className="text-xl text-gray-800 font-semibold">{user?.nome || "Usuário Desconhecido"}</h2>
                                 <p className='text-sm text-gray-800 ml-4'>{post.data}</p>
                             </div>                                
                             <p className="mt-2 text-gray-700">{post.conteudo}</p>                                

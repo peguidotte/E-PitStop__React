@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import '../pages/Profile.css';
 
+const agora = new Date();
+
+const dia = String(agora.getDate()).padStart(2, '0');
+const mes = String(agora.getMonth() + 1).padStart(2, '0'); // Meses começam em 0
+const ano = String(agora.getFullYear());
+const hora = String(agora.getHours()).padStart(2, '0');
+const minuto = String(agora.getMinutes()).padStart(2, '0');
+
+const dataHoraInt = parseInt(`${dia}${mes}${ano}${hora}${minuto}`, 10);
+
 const AuthForm = ({ onLogin, onRegister, teams }) => {
     const [loginData, setLoginData] = useState({
         email: '',
@@ -26,6 +36,8 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
     };
 
     const openRegister = () => {
+    
+
         Swal.fire({
             title: 'Cadastro',
             html: `
@@ -81,7 +93,7 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
                     return false;
                 }
 
-                return { username, phone, email, password, team };
+                return {id: dataHoraInt, username, phone, email, password, team };
             }
         }).then((result) => {
             if (result.isConfirmed) {
