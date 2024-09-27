@@ -7,8 +7,7 @@ function Foryou() {
     const [usuarios, setUsuarios] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
     const [posts, setPosts] = useState([]);
-    const user = JSON.parse(localStorage.getItem("currentUser"));
-    const [textPost, setTextPost] = useState('');
+    const user = JSON.parse(localStorage.getItem("currentUser"));    
 
     useEffect(() => {
         setUsuarios(data.usuarios);
