@@ -18,3 +18,14 @@
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
 }
+
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
