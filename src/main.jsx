@@ -13,6 +13,7 @@ import Chat from './pages/Chat.jsx';
 import Stream from './pages/Stream.jsx';
 import Profile from './pages/Profile.jsx';
 import Search from './pages/Search.jsx';
+import Communitie from './pages/Communitie.jsx';
 
 import ReactDOM from 'react-dom/client';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="stream" element={<Stream />} />
           <Route path="chat" element={<Chat />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="Communitie/:id" element={<Communitie />} />
         </Route>
       </Routes>
     </Router>

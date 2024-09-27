@@ -1,60 +1,117 @@
 {
-    "grupos": [
-      {
-        "id": 1,
-        "nome": "Tecnologia"
-      },
-      {
-        "id": 2,
-        "nome": "Sustentabilidade"
-      }
-    ],
-    "following": [1],
-    "usuarios": [
-      {
-        "id": 1,
-        "nome": "Carlos Silva",
-        "email": "carlos.silva@email.com"
-      },
-      {
-        "id": 2,
-        "nome": "Maria Oliveira",
-        "email": "maria.oliveira@email.com"
-      }
-    ],
-    "posts": [
-      {
-        "id": 101,
-        "titulo": "A evolução da Fórmula E",
-        "conteudo": "A Fórmula E tem evoluído rapidamente desde sua criação. As novas tecnologias estão mudando o cenário das corridas elétricas.",
-        "data": "2024-09-01 00:00:00",
-        "usuario_id": 1,
-        "grupo_id": 1
-      },
-      {
-        "id": 102,
-        "titulo": "Desempenho das equipes na temporada 2024",
-        "conteudo": "Analisando o desempenho das principais equipes nesta temporada e as estratégias utilizadas.",
-        "data": "2024-09-10 00:00:00",
-        "usuario_id": 1,
-        "grupo_id": null
-      },
-      {
-        "id": 201,
-        "titulo": "Os desafios da Fórmula E",
-        "conteudo": "A Fórmula E enfrenta desafios únicos, desde a sustentabilidade até a aceitação do público.",
-        "data": "2024-09-05 00:00:00",
-        "usuario_id": 2,
-        "grupo_id": 2
-      },
-      {
-        "id": 202,
-        "titulo": "Os pilotos mais promissores da Fórmula E",
-        "conteudo": "Um olhar sobre os jovens talentos que estão se destacando na Fórmula E.",
-        "data": "2024-09-15 00:00:00",
-        "usuario_id": 2,
-        "grupo_id": null
-      }
-    ]
-  }
-  
+  "grupos": [
+    {
+      "id": 1,
+      "nome": "Tecnologia"
+    },
+    {
+      "id": 2,
+      "nome": "Sustentabilidade"
+    }
+  ],
+  "following": [1],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Carlos Silva",
+      "email": "carlos.silva@email.com",
+      "tipo": "usuário"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Oliveira",
+      "email": "maria.oliveira@email.com",
+      "tipo": "usuário"
+    },
+    {
+      "id": 3,
+      "nome": "Mercedes EQ Formula E Team",
+      "email": "mercedes.team@email.com",
+      "tipo": "equipe"
+    },
+    {
+      "id": 4,
+      "nome": "DS Techeetah",
+      "email": "ds.techeetah@email.com",
+      "tipo": "equipe"
+    },
+    {
+      "id": 5,
+      "nome": "Lucas di Grassi",
+      "email": "lucas.grassi@email.com",
+      "tipo": "piloto"
+    },
+    {
+      "id": 6,
+      "nome": "Jean-Éric Vergne",
+      "email": "jean.vergne@email.com",
+      "tipo": "piloto"
+    }
+  ],
+  "posts": [
+    {
+      "id": 101,
+      "titulo": "A evolução da Fórmula E",
+      "conteudo": "A Fórmula E tem evoluído rapidamente desde sua criação. As novas tecnologias estão mudando o cenário das corridas elétricas.",
+      "data": "2024-09-01 00:00:00",
+      "usuario_id": 1,
+      "grupo_id": 1
+    },
+    {
+      "id": 102,
+      "titulo": "Desempenho das equipes na temporada 2024",
+      "conteudo": "Analisando o desempenho das principais equipes nesta temporada e as estratégias utilizadas.",
+      "data": "2024-09-10 00:00:00",
+      "usuario_id": 1,
+      "grupo_id": null
+    },
+    {
+      "id": 201,
+      "titulo": "Os desafios da Fórmula E",
+      "conteudo": "A Fórmula E enfrenta desafios únicos, desde a sustentabilidade até a aceitação do público.",
+      "data": "2024-09-05 00:00:00",
+      "usuario_id": 2,
+      "grupo_id": 2
+    },
+    {
+      "id": 202,
+      "titulo": "Os pilotos mais promissores da Fórmula E",
+      "conteudo": "Um olhar sobre os jovens talentos que estão se destacando na Fórmula E.",
+      "data": "2024-09-15 00:00:00",
+      "usuario_id": 2,
+      "grupo_id": null
+    },
+    {
+      "id": 301,
+      "titulo": "Tecnologia e Inovação nas corridas",
+      "conteudo": "Como a tecnologia está moldando o futuro da Fórmula E.",
+      "data": "2024-09-20 00:00:00",
+      "usuario_id": 3,
+      "grupo_id": 1
+    },
+    {
+      "id": 302,
+      "titulo": "A importância da sustentabilidade",
+      "conteudo": "Por que a sustentabilidade é crucial para o futuro das corridas elétricas.",
+      "data": "2024-09-22 00:00:00",
+      "usuario_id": 4,
+      "grupo_id": 2
+    },
+    {
+      "id": 401,
+      "titulo": "O que significa ser um piloto na Fórmula E?",
+      "conteudo": "Desafios e recompensas que os pilotos enfrentam na Fórmula E.",
+      "data": "2024-09-25 00:00:00",
+      "usuario_id": 5,
+      "grupo_id": null
+    },
+    {
+      "id": 402,
+      "titulo": "Minhas experiências nas pistas",
+      "conteudo": "Reflexões sobre as corridas e o que aprendi como piloto.",
+      "data": "2024-09-26 00:00:00",
+      "usuario_id": 6,
+      "grupo_id": null
+    }
+  ]
+}
