@@ -157,13 +157,13 @@ const Profile = () => {
     if (isLoggedIn) {
         const selectedTeam = teams.find(team => team.name === formData.team);
         return (
-            <div className='p-5 md:px-10'>
+            <div className='p-3 sm:p-5 md:px-10'>
                 <div className='flex justify-between items-center'>
-                    <div className='flex items-center gap-5'>
-                    <img className='rounded-full w-14 md:w-28' src={formData.profilePicture || User} alt='profile photo'/>
+                    <div className='flex items-center gap-1'>
+                        <img className='rounded-full w-14 md:w-28' src={formData.profilePicture || User} alt='profile photo'/>
                         <h1 className='text-azul-claro text-2xl md:text-4xl lg:text-5xl'>{formData.username}</h1>
                     </div>
-                    <div className='flex items-center gap-6'>
+                    <div className='flex items-center gap-3 sm:gap-6'>
                         <button className='text-azul-marinho text-2xl md:text-4xl hover:text-azul-claro' onClick={handleEditProfile}>
                             <MdOutlineEdit/>
                         </button>
