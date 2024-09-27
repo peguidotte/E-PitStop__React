@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import data from '../../assets/postsUser.json';
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import ListPost from '../../components/ListPost';
+import data from '../assets/postsUser.json';
 
-function Foryou() {
+function ListPost({ filteredPosts }) {
     const [usuarios, setUsuarios] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
     const [posts, setPosts] = useState([]);
@@ -13,7 +12,7 @@ function Foryou() {
 
     useEffect(() => {
         setUsuarios(data.usuarios);
-        const initialPosts = [...data.posts];
+        const initialPosts = [...filteredPosts];
 
         const savedPosts = localStorage.getItem('posts');
         if (savedPosts) {
@@ -61,11 +60,44 @@ function Foryou() {
 
 
     return (
-        <div className="max-w-3xl mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Posts for you</h1>
-            <ListPost filteredPosts={data.posts} />
-        </div>
+        <>
+            <ul>
+                {posts.sort((a, b) => new Date(b.data) - new Date(a.data)).map(post => {
+                    const user = usuarios.find(x => x.id === post.usuario_id);
+                    return (
+                        <li key={post.id} className="mb-6 p-4 border rounded-lg shadow-md bg-white relative">
+                            <button
+                                type='button'
+                                className='text-black font-md absolute right-2 top-2'
+                                onClick={() => likePost(post.id)}
+                            >
+                                {likedPosts.includes(post.id.toString()) ? (
+                                    <FaHeart size={25} color='#ff0000' />
+                                ) : (
+                                    <CiHeart size={25} />
+                                )}
+                            </button>
+                            <div className='flex flex-row items-end justify-start'>
+                                <h2 className="text-xl text-gray-800 font-semibold">{user?.nome || "Usuário Desconhecido"}</h2>
+                                <p className='text-sm text-gray-800 ml-4'>{post.data.split(' ')[0]}</p>
+                            </div>
+                            <p className="mt-2 text-gray-700">{post.conteudo}</p>
+                        </li>
+                    );
+                })}
+            </ul>
+            {user && (
+                <div className='flex flex-row justify-between items-center'>
+                    <input
+                        className='bg-transparent border-2 rounded-full px-6 py-2 border-white h-14 flex-1'
+                        value={textPost}
+                        onChange={(e) => setTextPost(e.target.value)}
+                    />
+                    <button type='button' onClick={createPost} className='self-end m-10 p-4 w-auto bg-azul-marinho rounded-full'>Novo Post</button>
+                </div>
+            )}
+        </>
     );
 }
 
-export default Foryou;
+export default ListPost;
