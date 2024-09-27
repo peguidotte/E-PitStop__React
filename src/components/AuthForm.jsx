@@ -30,7 +30,7 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
             title: 'Cadastro',
             html: `
                 <div class="flex flex-col">
-                    <input type="text" id="username" class="swal2-input swalform" placeholder="Username" required />
+                    <input type="text" id="username" class="swal2-input swalform" placeholder="Username" maxlength=15 required />
                     <input type="text" id="phone" class="swal2-input swalform" placeholder="Cel (DDD+número)" required />
                     <input type="email" id="email" class="swal2-input swalform" placeholder="Email" required />
                     <input type="password" id="password" class="swal2-input swalform" placeholder="Senha" required />
@@ -71,15 +71,18 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
                 // Validação do telefone (DDD + número)
                 const phoneRegex = /^\d{2}\d{8,9}$/;
                 if (!phoneRegex.test(phone)) {
-                    Swal.showValidationMessage(`Phone number must include DDD and be 10-11 digits long`);
+                    Swal.showValidationMessage(`O número deve incluir 10 ou 11 algarismos (DDD incluso)`);
                     return false;
                 }
 
                 // Validação da senha (mínimo 6 caracteres)
                 if (password.length < 6) {
-                    Swal.showValidationMessage(`Password must be at least 6 characters long`);
+                    Swal.showValidationMessage(`A senha precisa ter mais de 6 caracteres`);
                     return false;
                 }
+
+                if (username.length > 13)
+                    Swal.showValidationMessage(`Username muito grande (máx. 13 caracteres)`)
 
                 return { username, phone, email, password, team };
             }

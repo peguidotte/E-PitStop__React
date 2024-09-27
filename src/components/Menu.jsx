@@ -24,7 +24,7 @@ export default function Menu() {
                 <img src={Logo} alt="Logo formula E" className="w-3/4" />
             </header>
 
-            <nav className="text-azul-claro py-8 w-full text-3xl lg:text-2xl xl:text-3xl lg:pl-[10%] xl:pl-[25%]">
+            <nav className="text-azul-claro py-8 w-full text-3xl lg:text-2xl xl:text-3xl lg:pl-[10%] xl:pl-[20%] 2xl:pl-[25%]">
                 <ul className="flex justify-between mx-3 md:mx-8 lg:flex-col lg:gap-5 xl:gap-8">
                     {menuItems.map((item, index) => (
                         <li key={index}>
