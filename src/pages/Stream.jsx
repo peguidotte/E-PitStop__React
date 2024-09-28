@@ -3,6 +3,7 @@ import ReactPlayer from "react-player";
 import { FaRegHeart, FaHeart, FaYoutube } from "react-icons/fa";
 import { CSSTransition } from "react-transition-group";
 import "./Stream.css";
+import Swal from "sweetalert2";
 
 function Stream() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -35,10 +36,9 @@ function Stream() {
 
   const initialLikes = localStorage.getItem("likes")
     ? parseInt(localStorage.getItem("likes"))
-    : 0 ;
+    : 0;
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(localStorage.getItem("liked") === "true");
-  const [comments, setComments] = useState([]);
 
   const handleLike = () => {
     if (!liked) {
@@ -54,8 +54,13 @@ function Stream() {
     }
   };
 
-  const handleComment = (comment) => {
-    setComments([...comments, comment]);
+  const handleComment = () => {
+    Swal.fire({
+      title: 'Comentário enviado com sucesso ao Youtube!', icon: 'success', customClass: {
+        popup: 'custom-swal-popup'
+      }
+    });
+
   };
 
   const initialTime = localStorage.getItem("time")
@@ -84,6 +89,10 @@ function Stream() {
     };
   }, []);
 
+  const handleClick = () => {
+    window.open('https://www.youtube.com/channel/SEU_CANAL', '_blank');
+  };
+
   useEffect(() => {
     const closeTime = localStorage.getItem("closeTime");
     if (closeTime) {
@@ -100,14 +109,14 @@ function Stream() {
 
   return (
     <>
-      <header className="flex flex-col -translate-y-6">
-        <h1 className=" translate-y-6 text-3xl ml-2 font-light ">
+      <header className="flex flex-col -translate-y-6 sm:translate-y-0 sm:flex-row sm:items-center sm:justify-center lg:gap-5">
+        <h1 className=" translate-y-6 text-3xl ml-2 font-light sm:translate-y-0">
           Próxima corrida em
         </h1>
         <h2 className="text-azul-claro text-[2.4rem] ml-2 self-center font-bold z-10 border-azul-claro border-b border-r pr-4">{`${days} dias, ${hours}:${minutes}:${seconds}`}</h2>
       </header>
-      <main className="flex flex-col gap-2 justify-center">
-        <h2 className="text-sm font-extralight">
+      <main className="flex flex-col gap-2 justify-center mt-3 px-2">
+        <h2 className="text-sm font-extralight sm:px-10 lg:px-30 xl:px-40">
           <span className="text-azul-claro text-lg font-semibold">
             Enquanto isso,
           </span>
@@ -122,13 +131,15 @@ function Stream() {
             height={playerSize.height}
           />
         </div>
-        <div className="flex justify-between gap-2 px-1 items-center ">
-          <input
-            className="bg-cinza p-1"
-            type="text"
-            onSubmit={handleComment}
-            placeholder="Enviar feedback"
-          />
+        <div className="flex justify-between gap-2 px-1 items-center sm:px-10 sm:-translate-y-10 lg:px-36 lg:-translate-y-40 xl:px-40 xl:-translate-y-44">
+          <div className="flex items-center">
+            <input
+              className="bg-cinza p-1"
+              type="text"
+              placeholder="Enviar feedback"
+            />
+            <button onClick={handleComment} className="bg-azul-claro text-white p-1">Enviar</button>
+          </div>
           <div className="flex gap-2">
             <button onClick={handleLike}>
               <CSSTransition in={liked} timeout={500} classNames="like-transition">
@@ -142,9 +153,11 @@ function Stream() {
             <p>{likes}</p>
           </div>
         </div>
-        <div className="flex flex-col items-center ">
-          <h2 className="text-xl text-center">Assista mais vídeos no canal oficial da Formula E!</h2>
-          <FaYoutube className="text-8xl text-azul-marinho hover:text-azul-claro"/>
+        <div className="flex flex-col items-center justify-center mt-10 sm:mt-4 sm:px-10 lg:mt-0 lg:flex-row lg:gap-2 lg:-translate-y-40 lg:px-20">
+          <h2 className="text-2xl text-pretty text-center lg:text-end">Assista mais vídeos como esse no canal oficial da <span className="text-4xl text-azul-claro">Formula E!</span></h2>
+          <button onClick={handleClick} className="focus:outline-none">
+            <FaYoutube className="text-9xl text-azul-claro lg:text-azul-marinho hover:text-azul-claro" />
+        </button>
         </div>
       </main>
     </>

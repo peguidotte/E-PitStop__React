@@ -19,6 +19,12 @@
     transition: opacity 300ms, transform 300ms;
 }
 
+.custom-swal-popup {
+    background-color: var(--cinza);
+    color: white;
+    border-radius: 10px
+}
+
 .player-wrapper {
     position: relative;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
@@ -29,6 +35,16 @@
     position: absolute;
     margin: 0 auto;
     top: 0;
-    left: 15%; /* Move the left edge of the player to the middle of the wrapper */
-    
+}
+
+@media screen and (min-width: 640px) {
+    .player-wrapper {
+        left: 5%; 
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .player-wrapper {
+        left: 15%; 
+    }
 }
