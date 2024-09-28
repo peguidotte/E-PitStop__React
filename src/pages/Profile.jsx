@@ -5,10 +5,22 @@ import Swal from 'sweetalert2';
 import { MdOutlineEdit } from 'react-icons/md';
 import { CiLogout } from 'react-icons/ci';
 import User from '../assets/userprofile.png'
+import ListPost from '../components/ListPost';
+import data from '../assets/postsUser.json';
 
 const Profile = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const initialPosts = [];
+    const savedPosts = localStorage.getItem('posts');
+    if (savedPosts) {
+        const postsArray = JSON.parse(savedPosts);
+        initialPosts.push(...postsArray);
+    }
  
+    const savedLikes = localStorage.getItem("likes") ? localStorage.getItem("likes").split(';') : [];    
+    console.log('aaa',savedLikes)
+    console.log(data.posts.filter(x => savedLikes.includes(x.id.toString())))
+
     const [formData, setFormData] = useState({
         id: '',
         username: '',
@@ -178,13 +190,11 @@ const Profile = () => {
                 <div className='flex justify-between p-8'>
                     <button onClick={() => handleTabChange('posts')}>Posts</button>
                     <button onClick={() => handleTabChange('liked')}>Curtidos</button>
-                    <button onClick={() => handleTabChange('saved')}>Salvos</button>
                 </div>
 
                 <div>
-                    {activeTab === 'posts' && <div>Mostrar posts do usuário</div>}
-                    {activeTab === 'liked' && <div>Mostrar posts curtidos</div>}
-                    {activeTab === 'saved' && <div>Mostrar posts salvos</div>}
+                    {activeTab === 'posts' && <div> <ListPost filteredPosts={initialPosts} /> </div>}
+                    {activeTab === 'liked' && <div> <ListPost filteredPosts={data.posts.filter(x => savedLikes.includes(x.id.toString()))} /> </div>}
                 </div>
             </div>
         );
