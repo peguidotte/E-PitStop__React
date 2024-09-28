@@ -22,10 +22,13 @@
 .player-wrapper {
     position: relative;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    
 }
 
 .react-player {
     position: absolute;
+    margin: 0 auto;
     top: 0;
-    left: 0;
+    left: 15%; /* Move the left edge of the player to the middle of the wrapper */
+    
 }
