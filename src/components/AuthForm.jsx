@@ -92,14 +92,14 @@ const AuthForm = ({ onLogin, onRegister, teams }) => {
                     Swal.showValidationMessage(`A senha precisa ter mais de 6 caracteres`);
                     return false;
                 }
-
-                if (username.length > 13){
+                
+                // Validação para o username não ficar bizarramente grande, slc ngm merece estilizar isso
+                if (username.length > 15){
                     Swal.showValidationMessage(`Username muito grande (máx. 13 caracteres)`);
                     return false;
                 }
 
                 return {id: dataHoraInt, username, phone, email, password, team };
-
         
             }
         }).then((result) => {

@@ -24,8 +24,8 @@ export default function Menu() {
                 <img src={Logo} alt="Logo formula E" className="w-3/4" />
             </header>
 
-            <nav className="text-azul-claro py-8 w-full text-3xl lg:text-2xl xl:text-3xl lg:pl-[10%] xl:pl-[20%] 2xl:pl-[25%]">
-                <ul className="flex justify-between mx-3 md:mx-8 lg:flex-col lg:gap-5 xl:gap-8">
+            <nav className="text-azul-claro py-8 w-full text-3xl lg:text-2xl xl:text-4xl lg:pl-[10%] xl:pl-[15%] 2xl:pl-[20%] flex-grow overflow-auto">
+                <ul className="flex justify-between mx-3 md:mx-8 lg:flex-col lg:gap-5 xl:gap-14">
                     {menuItems.map((item, index) => (
                         <li key={index}>
                             <NavLink className="flex items-center gap-3" to={item.to}>
@@ -37,10 +37,7 @@ export default function Menu() {
                 </ul>
             </nav>
 
-            <div className="hidden lg:block flex-grow overflow-auto">
-                <h1 className="text-azul-claro">Pequenas info/perfil</h1>
-                <p>Informações básicas do perfil aqui</p>
-            </div>
+            
         </div>
     );
 }
