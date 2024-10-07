@@ -32,26 +32,4 @@ const Chat = () => {
     );
 };
 
-const styles = {
-    container: {
-
-    },
-
-    title: {
-
-    },
-    message: {
-
-    },
-    button: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        backgroundColor: '#4CAF50',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-    },
-};
-
 export default Chat;

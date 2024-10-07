@@ -1,12 +1,12 @@
-import '../pages/Profile.css';
+import '../Profile/Profile.css';
 import { useState, useEffect } from 'react';
-import AuthForm from '../components/AuthForm';
+import AuthForm from '../../components/AuthForm';
 import Swal from 'sweetalert2';
 import { MdOutlineEdit } from 'react-icons/md';
 import { CiLogout } from 'react-icons/ci';
-import User from '../assets/userprofile.png'
-import ListPost from '../components/ListPost';
-import data from '../assets/postsUser.json';
+import User from '../../assets/userprofile.png'
+import ListPost from '../../components/ListPost';
+import data from '../../assets/postsUser.json';
 
 const Profile = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -187,9 +187,13 @@ const Profile = () => {
                 <p className='mt-3 text-gray-300 break-words break-all'>{formData.bio || 'Sua bio vem aqui!'}</p>
                 <p className='mt-2 text-2xl md:text-4xl mb-4' style={{ color: selectedTeam?.color }}>{formData.team}</p>
 
-                <div className='flex justify-between p-8'>
-                    <button onClick={() => handleTabChange('posts')}>Posts</button>
-                    <button onClick={() => handleTabChange('liked')}>Curtidos</button>
+                <div className='flex justify-around p-8'>
+                    <button onClick={() => handleTabChange('posts')} className={activeTab === 'posts' ? 'text-white' : 'text-gray-500'}>
+                        Posts 
+                    </button>
+                    <button onClick={() => handleTabChange('liked')} className={activeTab === 'liked' ? 'text-white' : 'text-gray-500'}>
+                        Curtidos
+                    </button>
                 </div>
 
                 <div>

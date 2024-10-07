@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import data from "../assets/postsUser.json";
+import PropTypes from "prop-types";
 
 function ListPost({ filteredPosts, enablePost }) {
   const [usuarios, setUsuarios] = useState([]);
@@ -58,6 +59,11 @@ function ListPost({ filteredPosts, enablePost }) {
 
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setTextPost("");
+
+    ListPost.propTypes = {
+      filteredPosts: PropTypes.array.isRequired,
+      enablePost: PropTypes.bool.isRequired,
+    };
   };
 
   return (
@@ -115,6 +121,7 @@ function ListPost({ filteredPosts, enablePost }) {
       )}
     </>
   );
+
 }
 
 export default ListPost;

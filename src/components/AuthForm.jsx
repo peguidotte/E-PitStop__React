@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
-import '../pages/Profile.css';
+import '../pages/Profile/Profile.css';
 
 const agora = new Date();
 
